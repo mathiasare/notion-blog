@@ -1,6 +1,6 @@
 import { NotionPage } from "@/components/NotionPage"
 import { ABOUT_PAGE_ID } from "@/lib/config"
-import { getPageCached } from "@/lib/get-page-cached"
+import { getPageCached } from "@/lib/kv-cache"
 
 export const revalidate = 500
 
