@@ -3,7 +3,7 @@ import notion from "./notion"
 import { kv } from "@vercel/kv"
 
 export const getPageCached = async (pageId: string) => {
-    let recordMap: ExtendedRecordMap
+    let recordMap: ExtendedRecordMap | null
     const kvKey = getKvKey(pageId)
     try {
         recordMap = await kv.hget(kvKey, 'recordMap')
@@ -21,8 +21,7 @@ export const getPageCached = async (pageId: string) => {
         if (recordMap) {
             await kv.hset(
                 kvKey, 
-                { recordMap: recordMap },
-                { ex: 3600 },
+                { recordMap: recordMap }
             )
         }
     } catch(error) {
