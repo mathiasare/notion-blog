@@ -9,6 +9,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 
+import PageHeader from './PageHeader'
+
 const Collection = dynamic(() =>
   import('react-notion-x/build/third-party/collection').then(
     (m) => m.Collection
@@ -58,7 +60,6 @@ export const NotionPage = ({
         darkMode={false}
         rootPageId={rootPageId}
         previewImages={true}
-        disableHeader={true}
         components={{
             nextImage: Image,
             nextLink: Link,
@@ -66,6 +67,7 @@ export const NotionPage = ({
             Equation,
             Pdf,
             Modal,
+            Header: PageHeader
         }}
       />
     </>
