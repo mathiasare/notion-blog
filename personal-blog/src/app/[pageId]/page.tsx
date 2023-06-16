@@ -1,5 +1,5 @@
 import { NotionPage } from "@/components/NotionPage";
-import { getPageCached } from "@/lib/get-page-cached";
+import { getPageCached } from "@/lib/kv-cache";
 import notion from "@/lib/notion";
 
 export const revalidate = 500

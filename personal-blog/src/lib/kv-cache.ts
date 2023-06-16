@@ -19,10 +19,22 @@ export const getPageCached = async (pageId: string) => {
 
     try {
         if (recordMap) {
-            await kv.hset(
+            kv.hset(
                 kvKey, 
                 { recordMap: recordMap }
-            )
+            ).then((res) => {
+                if (res !== 0) {
+                    kv.expire(kvKey, 300).then((res) => {
+                        if (res === 1) {
+                            console.info(`Cached result for: ${kvKey}`)
+                        } else {
+                            console.warn(`Error caching result for key: ${kvKey}`)
+                        }
+                    })
+                } else {
+                    console.warn(`Error caching result for key: ${kvKey}`)
+                }
+            })
         }
     } catch(error) {
         console.error(`Error saving data to KV:  ${pageId}`, error)
@@ -31,6 +43,6 @@ export const getPageCached = async (pageId: string) => {
     return recordMap;
 }
 
-const getKvKey = (pageId: string) => {
+export const getKvKey = (pageId: string) => {
     return `notion:page:${pageId}`
 }
