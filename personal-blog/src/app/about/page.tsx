@@ -1,10 +1,12 @@
 import { NotionPage } from "@/components/NotionPage"
 import { ABOUT_PAGE_ID } from "@/lib/config"
-import notion from "@/lib/notion"
+import { getPageCached } from "@/lib/get-page-cached"
+
+export const revalidate = 500
 
 export default async function Page() {
     const pageId = ABOUT_PAGE_ID
-    const recordMap = await notion.getPage(pageId)
+    const recordMap = await getPageCached(pageId)
 
     return <NotionPage recordMap={recordMap} rootPageId={pageId} />
 }
