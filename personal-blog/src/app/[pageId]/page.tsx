@@ -1,8 +1,7 @@
 import { NotionPage } from "@/components/NotionPage";
 import { getPageCached } from "@/lib/kv-cache";
-import notion from "@/lib/notion";
 
-export const revalidate = 500
+export const revalidate = 300
 
 export default async function Page({ params }: { params: { pageId: string } }) {
     const recordMap = await getPageCached(params.pageId)

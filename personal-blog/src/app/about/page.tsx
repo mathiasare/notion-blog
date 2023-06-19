@@ -2,7 +2,7 @@ import { NotionPage } from "@/components/NotionPage"
 import { ABOUT_PAGE_ID } from "@/lib/config"
 import { getPageCached } from "@/lib/kv-cache"
 
-export const revalidate = 500
+export const revalidate = 300
 
 export default async function Page() {
     const pageId = ABOUT_PAGE_ID
