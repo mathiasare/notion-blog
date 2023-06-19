@@ -10,6 +10,7 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 
 import PageHeader from './PageHeader'
+import PageFooter from './PageFooter'
 
 const Collection = dynamic(() =>
   import('react-notion-x/build/third-party/collection').then(
@@ -60,6 +61,7 @@ export const NotionPage = ({
         darkMode={false}
         rootPageId={rootPageId}
         previewImages={true}
+        footer={PageFooter()}
         components={{
             nextImage: Image,
             nextLink: Link,

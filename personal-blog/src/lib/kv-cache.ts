@@ -8,7 +8,7 @@ export const getPageCached =  async (pageId: string) => {
     const kvKey = getKvKey(pageId)
     const baseUrl = getBaseUrl()
     try {
-        const data = await fetch(`${baseUrl}/api/cache/${pageId}`, { method: 'GET' })
+        const data = await fetch(`${baseUrl}/api/cache/${pageId}`, { method: 'GET', next: {tags: ['pageCache']} })
         recordMap = await data.json()
         if (recordMap) {
             console.info(`CACHE HIT: ${kvKey}`)

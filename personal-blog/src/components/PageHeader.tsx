@@ -99,7 +99,9 @@ export default function PageHeader() {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
-                {navigation.map((item) => (
+                {
+                !isDarkMode?
+                navigation.map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}
@@ -107,7 +109,15 @@ export default function PageHeader() {
                   >
                     {item.name}
                   </Link>
-                ))}
+                ))  : navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-stone-800"
+                  >
+                    {item.name}
+                  </Link>
+                )) }
               </div>
               <div className="py-6 navigation-bar-element">
                 <ToggleThemeButton/>
