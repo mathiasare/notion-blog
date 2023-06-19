@@ -1,13 +1,19 @@
-import { NotionPage } from '@/components/NotionPage'
-import { ROOT_PAGE_ID } from '@/lib/config'
-import notion from '@/lib/notion'
 
-export const revalidate = 60
+import { NotionPage } from '@/components/NotionPage'
+import { getBaseUrl } from '@/lib/base-url'
+import { ROOT_PAGE_ID } from '@/lib/config'
+import { getPageCached } from '@/lib/kv-cache'
+
+export const revalidate = 300
 
 export default async function Home() {
-
   const pageId = ROOT_PAGE_ID
-  const recordMap = await notion.getPage(pageId)
+
+  console.log(getBaseUrl())
+
+  console.time("getPageCached")
+  const recordMap = await getPageCached(pageId)
+  console.timeEnd("getPageCached")
 
   return <NotionPage recordMap={recordMap} rootPageId={ROOT_PAGE_ID} />
 }
