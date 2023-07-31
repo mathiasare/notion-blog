@@ -69,7 +69,7 @@ export const NotionPage = ({
             Equation,
             Pdf,
             Modal,
-            Header: PageHeader
+            Header: PageHeader,
         }}
       />
     </>
