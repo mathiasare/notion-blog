@@ -41,15 +41,12 @@ export const NotionPage = ({
   recordMap,
   rootPageId
 }: {
-  recordMap: ExtendedRecordMap
+  recordMap: ExtendedRecordMap | null
   rootPageId?: string
 }) => {
   if (!recordMap) {
-    return null
+     return null
   }
-
-  const title = getPageTitle(recordMap)
-  console.log(title, recordMap)
 
   return (
     <>

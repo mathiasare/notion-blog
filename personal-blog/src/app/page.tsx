@@ -8,12 +8,6 @@ export const revalidate = 300
 
 export default async function Home() {
   const pageId = ROOT_PAGE_ID
-
-  console.log(getBaseUrl())
-
-  console.time("getPageCached")
   const recordMap = await getPageCached(pageId)
-  console.timeEnd("getPageCached")
-
-  return <NotionPage recordMap={recordMap} rootPageId={ROOT_PAGE_ID} />
+  return <NotionPage recordMap={recordMap} rootPageId={ROOT_PAGE_ID}/>
 }

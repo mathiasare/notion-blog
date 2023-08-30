@@ -2,11 +2,30 @@ import { ExtendedRecordMap } from "notion-types"
 import notion from "./notion"
 import { kv } from "@vercel/kv"
 import { getBaseUrl } from "./base-url"
+import { Ratelimit } from '@upstash/ratelimit'
+import { headers } from "next/headers";
+
+
+const ratelimit = new Ratelimit({
+    redis: kv,
+    limiter: Ratelimit.fixedWindow(30, "60s"),
+  });
 
 export const getPageCached =  async (pageId: string) => {
     let recordMap: ExtendedRecordMap | null
     const kvKey = getKvKey(pageId)
     const baseUrl = getBaseUrl()
+
+    const ip = headers().get("x-forwarded-for");
+    const { success, limit, remaining, reset } = await ratelimit.limit(ip ?? "anonymous");
+
+    if (!success) {
+        console.debug(`No more remaining requests for ip: ${ip}`)
+        return null
+    }
+
+    console.debug({"ip" : ip, "remaining requests" : remaining})
+
     try {
         const data = await fetch(`${baseUrl}/api/cache/${pageId}`, { method: 'GET', next: {tags: ['pageCache']} })
         recordMap = await data.json()
