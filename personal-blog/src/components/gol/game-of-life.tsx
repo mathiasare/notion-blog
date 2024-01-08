@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { GameStatus, createNewGame } from "@/lib/gol/game"
 import { BoardGrid } from "./board-grid";
+import Link from "next/link";
 
 let game = createNewGame();
 export const GameOfLife = () => {
@@ -66,21 +67,18 @@ export const GameOfLife = () => {
     setEditButtonText("Edit")
 
     if (!game.next()) {
-      console.log("did not change!");
       return;
     }
 
-    console.log("Changed!");
-
     setTimeout(() => {
       setBoard(game.board);
-    }, (delay * 1000) / gridSize);
+    }, (delay * 1000) / game.board.size);
   }, [gameStatus, curBoard]);
 
 
     return (
         <div className="flex flex-col justify-center items-center">
-      <h1 className="font-extrabold text-5xl m-4">Game of Life</h1>
+      <h1 className="font-extrabold text-5xl m-4">Conway's Game of Life</h1>
       <BoardGrid board={curBoard} status={gameStatus}></BoardGrid>
       <div className="flex flex-row h-auto w-auto mt-4 justify-around">
         <button
@@ -108,7 +106,7 @@ export const GameOfLife = () => {
           {editButtonText}
         </button>
       </div>
-      <div className="flex flex-col md:flex-row h-auto w-auto mt-4 justify-around">
+      <div className="flex flex-col md:flex-row h-auto w-auto mt-4 space-y-4 md:space-y-0 md:space-x-4 justify-between items-center">
         {/*  Board size */}
         <div className="flex flex-col md:flex-row items-center space-x-4">
           <label className="text-gray-600">Board Size: {gridSize}</label>
@@ -136,6 +134,11 @@ export const GameOfLife = () => {
             onChange={handleDelayChange}
           />
         </div>
+      </div>
+      <p className="my-4 mx-10"> The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970. </p>
+      <div className="flex flex-row mb-4">
+        <h1>More information:</h1>
+        <Link className="mx-4 text-indigo-700 hover:text-indigo-500" href = "https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Wikipedia (English) </Link>
       </div>
     </div>
     )
