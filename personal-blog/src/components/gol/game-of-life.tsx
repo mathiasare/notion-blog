@@ -38,12 +38,12 @@ export const GameOfLife = () => {
     setGameStatus(game.status);
   }
 
-  const handleBoardSizeChange = (e) => {
-    setGridSize(e.target.value);
+  const handleBoardSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setGridSize(parseInt(e.target.value));
   };
 
-  const handleDelayChange = (e) => {
-    setDelay(e.target.value);
+  const handleDelayChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDelay(parseInt(e.target.value));
   };
 
   const handleNewGame = () => {
