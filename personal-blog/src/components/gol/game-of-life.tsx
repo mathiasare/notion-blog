@@ -1,14 +1,13 @@
-'use client';
+"use client";
 
 import { useEffect, useState } from "react";
-import { GameStatus, createNewGame } from "@/lib/gol/game"
+import { GameStatus, createNewGame } from "@/lib/gol/game";
 import { BoardGrid } from "./board-grid";
 import Link from "next/link";
 
 let game = createNewGame();
 export const GameOfLife = () => {
-
-    const [gameStatus, setGameStatus] = useState(game.status);
+  const [gameStatus, setGameStatus] = useState(game.status);
   const [curBoard, setBoard] = useState(game.board);
 
   const [playButtonText, setPlayButtonText] = useState("Play");
@@ -30,10 +29,10 @@ export const GameOfLife = () => {
   function toggleEditMode() {
     if (gameStatus !== GameStatus.EDITED) {
       game.status = GameStatus.EDITED;
-      setEditButtonText("Stop editing")
+      setEditButtonText("Stop editing");
     } else {
       game.status = GameStatus.PAUSED;
-      setEditButtonText("Edit")
+      setEditButtonText("Edit");
     }
 
     setGameStatus(game.status);
@@ -64,7 +63,7 @@ export const GameOfLife = () => {
     }
 
     setPlayButtonText("Pause");
-    setEditButtonText("Edit")
+    setEditButtonText("Edit");
 
     if (!game.next()) {
       return;
@@ -75,10 +74,11 @@ export const GameOfLife = () => {
     }, (delay * 1000) / game.board.size);
   }, [gameStatus, curBoard]);
 
-
-    return (
-        <div className="flex flex-col justify-center items-center">
-      <h1 className="font-extrabold text-5xl m-4">Conway's Game of Life</h1>
+  return (
+    <div className="flex flex-col justify-center items-center">
+      <h1 className="font-extrabold text-5xl m-4">
+        Conway&apos;s Game of Life
+      </h1>
       <BoardGrid board={curBoard} status={gameStatus}></BoardGrid>
       <div className="flex flex-row h-auto w-auto mt-4 justify-around">
         <button
@@ -135,11 +135,41 @@ export const GameOfLife = () => {
           />
         </div>
       </div>
-      <p className="my-4 mx-10"> The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970. </p>
+      <p className="mt-16 mb-4 mx-5">
+        {" "}
+        The Game of Life, also known simply as Life, is a cellular automaton
+        devised by the British mathematician John Horton Conway in 1970.{" "}
+      </p>
+
+      <div className="flex flex-col mb-4 mx-5">
+        <h1 className="font-bold text-xl mb-2">Rules of the game: </h1>
+        <ol className="space-y-2 list-decimal">
+          <li>
+            Any live cell with fewer than two live neighbours dies (referred to
+            as underpopulation or exposure).
+          </li>
+          <li>
+            Any live cell with more than three live neighbours dies (referred to
+            as overpopulation or overcrowding).
+          </li>
+          <li>
+            Any live cell with two or three live neighbours lives, unchanged, to
+            the next generation.
+          </li>
+          <li>
+            Any dead cell with exactly three live neighbours will come to life.
+          </li>
+        </ol>
+      </div>
       <div className="flex flex-row mb-4">
         <h1>More information:</h1>
-        <Link className="mx-4 text-indigo-700 hover:text-indigo-500" href = "https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Wikipedia (English) </Link>
+        <Link
+          className="mx-4 text-indigo-700 hover:text-indigo-500"
+          href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
+        >
+          Wikipedia (English){" "}
+        </Link>
       </div>
     </div>
-    )
-}
+  );
+};
