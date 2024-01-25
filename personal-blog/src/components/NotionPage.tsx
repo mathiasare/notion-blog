@@ -2,7 +2,6 @@
 
 import * as React from 'react'
 import { ExtendedRecordMap } from 'notion-types'
-import { getPageTitle } from 'notion-utils'
 
 import { NotionRenderer } from 'react-notion-x'
 import Image from 'next/image'

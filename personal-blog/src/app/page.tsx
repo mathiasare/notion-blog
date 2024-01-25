@@ -4,8 +4,6 @@ import { getBaseUrl } from '@/lib/base-url'
 import { ROOT_PAGE_ID } from '@/lib/config'
 import { getPageCached } from '@/lib/kv-cache'
 
-export const revalidate = 300
-
 export default async function Home() {
   const pageId = ROOT_PAGE_ID
   const recordMap = await getPageCached(pageId)
