@@ -7,7 +7,6 @@ export const GridRow : React.FC<{ row: Cell [], status: GameStatusType}> = ({ ro
             {
                 row.map((cell, index) => (<GridCell cell={cell} status={status} key={index} />))
             }
-            
         </div>)
 }
 
