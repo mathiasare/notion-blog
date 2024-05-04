@@ -19,7 +19,7 @@ uses both NextJS local cache and a Redis instance to reduce the number of API ca
 - React Notion X
 
 ## Shoutouts
-Big shoutout and thanks to [@transitive bullshit](https://github.com/transitive-bullshit) and the contributors of [React Notion X](https://github.com/NotionX/react-notion-x) for providing this amazing open source library.
+Big shoutout and thanks to [@transitive-bullshit](https://github.com/transitive-bullshit) and the contributors of [React Notion X](https://github.com/NotionX/react-notion-x) for providing this amazing open source library.
 
 Licence: MIT
 
