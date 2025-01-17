@@ -5,6 +5,5 @@ import { getPageCached } from "@/lib/kv-cache"
 export default async function Page() {
     const pageId = CONTACT_PAGE_ID
     const recordMap = await getPageCached(pageId)
-
     return <NotionPage recordMap={recordMap} rootPageId={pageId} />
 }

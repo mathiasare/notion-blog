@@ -1,6 +1,5 @@
 
 import { NotionPage } from '@/components/NotionPage'
-import { getBaseUrl } from '@/lib/base-url'
 import { ROOT_PAGE_ID } from '@/lib/config'
 import { getPageCached } from '@/lib/kv-cache'
 
